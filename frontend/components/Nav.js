@@ -9,7 +9,7 @@ const Nav = () => (
         <Link href="/sell">
             <a>Sell</a>
         </Link>
-        <Link href="/sigup">
+        <Link href="/signup">
             <a>Signup</a>
         </Link>
         <Link href="/orders">
