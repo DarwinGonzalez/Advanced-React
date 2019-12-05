@@ -1,6 +1,7 @@
 import Signup from "../components/Signup";
 import styled from 'styled-components';
 import Signin from "../components/Signin";
+import RequestReset from "../components/RequestReset";
 
 // The best way to display components in columns
 const Columns = styled.div`
@@ -13,6 +14,7 @@ const SignupPage = props => (
     <Columns>
         <Signup />
         <Signin />
+        <RequestReset />
     </Columns>
 )
 export default SignupPage;
