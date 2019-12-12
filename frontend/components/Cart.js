@@ -25,9 +25,9 @@ const TOGGLE_CART_MUTATION = gql`
 `;
 
 const Composed = adopt({
-	user: ({render}) => <User>{render}</User>,
-	toggleCart: ({render}) => <Mutation mutation={TOGGLE_CART_MUTATION}>{render}</Mutation>,
-	localState: ({render}) => <Query query={LOCAL_STATE_QUERY}>{render}</Query>
+	user: ({ render }) => <User>{render}</User>,
+	toggleCart: ({ render }) => <Mutation mutation={TOGGLE_CART_MUTATION}>{render}</Mutation>,
+	localState: ({ render }) => <Query query={LOCAL_STATE_QUERY}>{render}</Query>
 });
 
 const Cart = () => (
@@ -49,9 +49,11 @@ const Cart = () => (
 					<ul>{me.cart.map((cartItem) => <CartItem key={cartItem.id} cartItem={cartItem} />)}</ul>
 					<footer>
 						<p>{formatMoney(calcTotalPrice(me.cart))}</p>
-						<TakeMyMoney>
-							<SickButton>Ckeckout</SickButton>
-						</TakeMyMoney>
+						{me.cart.length && (
+							<TakeMyMoney>
+								<SickButton>Ckeckout</SickButton>
+							</TakeMyMoney>
+						)}
 					</footer>
 				</CartStyles>
 			);
