@@ -57,8 +57,6 @@ describe('<Nav />', () => {
         //console.log(nav.debug());
         expect(nav.children().length).toBe(6);
         expect(nav.text()).toContain('Sign Out');
-        // console.log(nav.debug());
-        // expect(toJSON(nav)).toMatchSnapshot();
     });
 
     it('renders the amaount of items in the cart',  async () => {
