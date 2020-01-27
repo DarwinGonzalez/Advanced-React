@@ -29,8 +29,6 @@ function totalItems(cart) {
 class TakeMyMoney extends React.Component {
 	onToken = async (res, createOrder) => {
         Nprogress.start();
-		console.log('Print res!!!');
-        console.log(res.id);
         // manually call the mutation once we have the stripe token
         const order =  await createOrder({
             variables: {
@@ -39,7 +37,6 @@ class TakeMyMoney extends React.Component {
         }).catch(err => {
             alert(err.message);
         });
-        console.log(order);
         Router.push({
             pathname: '/order',
             query: { id: order.data.createOrder.id }
@@ -48,7 +45,9 @@ class TakeMyMoney extends React.Component {
 	render() {
 		return (
 			<User>
-				{({ data: { me } }) => (
+				{({ data: { me }, loading }) => {
+				if(loading) return null;
+				return (
 					<Mutation mutation={CREATE_ORDER_MUTATION} refetchQueries={[ { query: CURRENT_USER_QUERY } ]}>
 						{(createOrder) => (
 							<StripeCheckout
@@ -67,10 +66,11 @@ class TakeMyMoney extends React.Component {
 							</StripeCheckout>
 						)}
 					</Mutation>
-				)}
+				)}}
 			</User>
 		);
 	}
 }
 
 export default TakeMyMoney;
+export { CREATE_ORDER_MUTATION };
